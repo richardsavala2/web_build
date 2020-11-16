@@ -2,6 +2,8 @@ import uuid
 from src.common.database import Database
 from flask.sessions import session
 
+from src.models.blog import Blog
+
 
 class User(object):
     def __init__(self, email, password, _id=None):
@@ -55,7 +57,7 @@ class User(object):
         session['email'] = None
 
     def get_blogs(self):
-        pass
+        return Blog.find_by_author_id(self._id)
 
     def json(self):
         return {
