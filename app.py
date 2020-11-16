@@ -26,6 +26,8 @@ def login_user():
 
     if User.login_valid(email, password):
         User.login(email)
+    else:
+        session['email'] = None
 
     return render_template('profile.html', email=session['email'])
 
