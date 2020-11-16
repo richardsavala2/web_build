@@ -1,7 +1,6 @@
 import uuid
 from src.common.database import Database
-from src.models.blog import blog_id
-from flask.sessions import session
+from flask import session
 import datetime
 
 from src.models.blog import Blog
