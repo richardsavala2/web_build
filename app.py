@@ -8,10 +8,21 @@ app = Flask(__name__)
 app.secret_key = 'v_secret_key'
 
 
-# www.mysite.com/api/
 @app.route('/')
-def hello_method():
+def home_template():
+    return render_template('home.html')
+
+
+# www.mysite.com/api/
+@app.route('/login')
+def login_template():
     return render_template('login.html')
+
+
+# www.mysite.com/api/register
+@app.route('/register')
+def register_template():
+    return render_template('register.html')
 
 
 @app.before_first_request
@@ -19,7 +30,7 @@ def initialize_database():
     Database.initialize()
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/auth/login', methods=['POST'])
 def login_user():
     email = request.form['email']
     password = request.form['password']
@@ -29,6 +40,15 @@ def login_user():
     else:
         session['email'] = None
 
+    return render_template('profile.html', email=session['email'])
+
+
+@app.route('/auth/register', methods=['POST'])
+def register_user():
+    email = request.form['email']
+    password = request.form['password']
+
+    User.register(email, password)
     return render_template('profile.html', email=session['email'])
 
 
