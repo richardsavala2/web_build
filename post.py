@@ -29,7 +29,8 @@ class Post(object):
 
     @classmethod
     def from_mongo(cls, id):
-        post_data = Database.find_one(collection='posts', query={'_id': id})
+        post_data = Database.find_one(collection='posts',
+                                      query={'_id': id})
         return cls(**post_data)
 
     @staticmethod
