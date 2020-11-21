@@ -20,7 +20,7 @@ class User(object):
 
     @classmethod
     def get_by_id(cls, _id):
-        data = Database.find_one('users', {'email': id})
+        data = Database.find_one('users', {'id': id})
         if data is not None:
             return cls(**data)
 
@@ -36,10 +36,10 @@ class User(object):
 
     @classmethod
     def register(cls, email, password):
-        user = User.get_by_email(email)
+        user = cls.get_by_email(email)
         if user is None:
             # user doesn't exist, create it
-            new_user = User(email, password)
+            new_user = cls(email, password)
             new_user.save_to_mongo()
             session['email'] = email
             return True
@@ -84,7 +84,7 @@ class User(object):
         }
 
     def save_to_mongo(self):
-        Database.Insert('user', self.json())
+        Database.insert('users', self.json())
 
 
 

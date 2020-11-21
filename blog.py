@@ -31,7 +31,7 @@ class Blog(object):
         return {
             'author': self.author,
             'author_id': self.author_id,
-            'title': self.author,
+            'title': self.title,
             'description': self.description,
             '_id': self._id
         }
