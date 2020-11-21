@@ -49,6 +49,7 @@ def register_user():
     password = request.form['password']
 
     User.register(email, password)
+
     return render_template('profile.html', email=session['email'])
 
 
