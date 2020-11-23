@@ -20,7 +20,7 @@ class User(object):
 
     @classmethod
     def get_by_id(cls, _id):
-        data = Database.find_one('users', {'id': id})
+        data = Database.find_one('users', {'_id': _id})
         if data is not None:
             return cls(**data)
 

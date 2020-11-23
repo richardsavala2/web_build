@@ -67,4 +67,5 @@ def user_blogs(user_id=None):
 
 
 if __name__ == '__main__':
+
     app.run()
