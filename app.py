@@ -96,10 +96,10 @@ def blog_posts(blog_id):
 @app.route('/posts/new/<string:blog_id>', methods=['POST', 'GET'])
 def create_new_post(blog_id):
     if request.method == 'GET':
-        return render_template('new_post.html')
+        return render_template('new_post.html', blog_id=blog_id)
     else:
         title = request.form['title']
-        content = request.form['description']
+        content = request.form['content']
         user = User.get_by_email(session['email'])
 
         new_post = Post(blog_id, title, content, user.email)
