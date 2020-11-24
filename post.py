@@ -19,7 +19,7 @@ class Post(object):
 
     def json(self):
         return{
-            'id': self._id,
+            '_id': self._id,
             'blog_id': self.blog_id,
             'author': self.author,
             'title': self.title,
@@ -35,5 +35,4 @@ class Post(object):
 
     @staticmethod
     def from_blog(id):
-        return [post for post in Database.find(collection='posts',
-                                               query={'blog_id': id})]
+        return [post for post in Database.find(collection='posts', query={'blog_id': id})]
